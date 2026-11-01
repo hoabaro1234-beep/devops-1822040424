@@ -1,0 +1,43 @@
+name: Screenshot evidence for CI/CD report
+
+on:
+  push:
+    paths:
+      - '.github/workflows/evidence.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Capture real browser screenshots
+        shell: bash
+        run: |
+          set -eu
+          mkdir -p evidence
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          echo "Browser: $CHROME"
+          capture() {
+            name="$1"; url="$2"
+            "$CHROME" --headless --no-sandbox --disable-dev-shm-usage \
+              --disable-gpu --hide-scrollbars --window-size=1440,1050 \
+              --virtual-time-budget=7000 \
+              --screenshot="evidence/$name.png" "$url" >/dev/null 2>&1
+            test -s "evidence/$name.png"
+          }
+          capture 01_repository https://github.com/hoabaro1234-beep/devops-1822040424
+          capture 02_workflow_code https://github.com/hoabaro1234-beep/devops-1822040424/blob/main/.github/workflows/deploy.yml
+          capture 03_actions_list https://github.com/hoabaro1234-beep/devops-1822040424/actions
+          capture 04_run_failed https://github.com/hoabaro1234-beep/devops-1822040424/actions/runs/41271605915
+          capture 05_run_success https://github.com/hoabaro1234-beep/devops-1822040424/actions/runs/41271677729
+          capture 06_live_website https://hoabaro1234-beep.github.io/devops-1822040424/
+          ls -lh evidence/
+      - name: Upload evidence images
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-cd-report-screenshots
+          path: evidence/*.png
+          retention-days: 7
