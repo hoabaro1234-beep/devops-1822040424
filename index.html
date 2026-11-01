@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bài thực hành CI/CD của Lê Nhật Hòa - 1822040424">
+  <title>DevOps CI/CD | Lê Nhật Hòa - 1822040424</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Trang chủ DevOps">
+        <span class="brand-icon">D</span>
+        <span>DEVOPS <strong>LAB</strong></span>
+      </a>
+      <span class="topbar-label">THIẾT KẾ PHẦN MỀM</span>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="student-name">
+        <div class="eyebrow"><span class="status-dot"></span> BÀI TẬP CÁ NHÂN · CI/CD PIPELINE</div>
+        <h1 id="student-name">Lê Nhật Hòa - 1822040424</h1>
+        <p class="hero-description">Triển khai website tự động bằng <strong>GitHub Actions</strong> và <strong>GitHub Pages</strong>. Mọi thay đổi được kiểm tra trước khi xuất bản.</p>
+        <div class="hero-actions">
+          <span class="version-pill">PHIÊN BẢN <b id="version">2.0</b></span>
+          <a class="button" href="#workflow">Xem quy trình <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <section class="overview" aria-label="Thông tin bài tập">
+        <article class="small-card"><p>01</p><strong>GitHub</strong><span>Quản lý mã nguồn</span></article>
+        <article class="small-card"><p>02</p><strong>Actions</strong><span>Kiểm thử tự động</span></article>
+        <article class="small-card"><p>03</p><strong>Pages</strong><span>Triển khai website</span></article>
+      </section>
+
+      <section class="workflow-section" id="workflow">
+        <div class="section-heading">
+          <div><span class="section-kicker">QUY TRÌNH</span><h2>Code → Check → Deploy</h2></div>
+          <span class="verified-label">TỰ ĐỘNG HÓA</span>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div><h3>Viết code &amp; Push</h3><p>Cập nhật HTML, CSS, JavaScript rồi đẩy lên nhánh <code>main</code>.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div><h3>Kiểm tra (check)</h3><p>Xác nhận đủ 3 tệp và tệp <code>index.html</code> chứa thẻ <code>&lt;title&gt;</code>.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div><h3>Triển khai (deploy)</h3><p>Chỉ xuất bản lên GitHub Pages sau khi job <code>check</code> thành công.</p></div></div>
+        </div>
+      </section>
+
+      <section class="notice" aria-label="Cập nhật phiên bản">
+        <div class="notice-icon">✓</div>
+        <div><strong>Website phiên bản 1.0 được triển khai lần đầu</strong><p>Đây là phiên bản khởi tạo, dùng để kiểm tra pipeline triển khai website lần đầu.</p></div>
+      </section>
+    </main>
+
+    <footer><span>© <span id="year">2026</span> Lê Nhật Hòa · MSSV 1822040424</span><span>HTML · CSS · JAVASCRIPT</span></footer>
+  </div>
+</body>
+</html>
