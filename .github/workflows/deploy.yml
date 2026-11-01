@@ -1,0 +1,73 @@
+name: CI/CD - Check and Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check website files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Check three required files
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in index.html style.css script.js; do
+            if [[ ! -f "$file" ]]; then
+              echo "ERROR: Missing required file: $file"
+              exit 1
+            fi
+            echo "OK: $file exists"
+          done
+
+      - name: Check HTML title tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! grep -Eiq '<title>[^<]+</title>' index.html; then
+            echo "ERROR: index.html must have a non-empty <title> tag"
+            exit 1
+          fi
+          echo "OK: index.html has a <title> tag"
+
+  deploy:
+    name: Deploy website to GitHub Pages
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare static website
+        shell: bash
+        run: |
+          mkdir -p _site
+          cp index.html style.css script.js _site/
+          touch _site/.nojekyll
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
