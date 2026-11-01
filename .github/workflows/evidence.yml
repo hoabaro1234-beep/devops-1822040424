@@ -42,4 +42,4 @@ jobs:
           path: evidence/*.png
           retention-days: 7
 
-# Refresh evidence screenshots after UI redesign on 2026-11-01.
+# Capture updated v2.1 public website evidence for the final Word report.
