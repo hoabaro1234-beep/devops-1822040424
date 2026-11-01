@@ -1,59 +1,108 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevOps CI/CD | Lê Nhật Hòa - 1822040424</title>
-  <meta name="description" content="Bài thực hành CI/CD của Lê Nhật Hòa - 1822040424">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eeede8">
+  <meta name="description" content="Lê Nhật Hòa — 1822040424. Bài thực hành triển khai website tự động với GitHub Actions và GitHub Pages.">
+  <title>Lê Nhật Hòa — DevOps / CI·CD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-<body>
-  <div class="page-shell">
-    <header class="topbar">
-      <a class="brand" href="index.html" aria-label="Trang chủ DevOps">
-        <span class="brand-icon">D</span>
-        <span>DEVOPS <strong>LAB</strong></span>
+<body id="top">
+  <a class="skip-link" href="#content">Đi đến nội dung</a>
+  <div class="site-frame">
+    <header class="site-header page-gutter">
+      <a class="identity" href="#top" aria-label="Lê Nhật Hòa — về đầu trang">
+        <span class="identity-symbol" aria-hidden="true">H<span>↗</span></span>
+        <span class="identity-name">NHAT HOA <small>DEVELOPMENT JOURNAL</small></span>
       </a>
-      <span class="topbar-label">THIẾT KẾ PHẦN MỀM</span>
+      <nav class="site-nav" id="site-nav" aria-label="Điều hướng">
+        <a href="#gioi-thieu">Tổng quan</a>
+        <a href="#quy-trinh">Quy trình</a>
+        <a href="#kiem-thu">Thực nghiệm</a>
+      </nav>
+      <a class="header-link" href="https://github.com/hoabaro1234-beep/devops-1822040424" target="_blank" rel="noopener noreferrer">GITHUB <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Mở menu"><span></span><span></span></button>
     </header>
 
-    <main>
-      <section class="hero" aria-labelledby="student-name">
-        <div class="eyebrow"><span class="status-dot"></span> BÀI TẬP CÁ NHÂN · CI/CD PIPELINE</div>
-        <h1 id="student-name">Lê Nhật Hòa - 1822040424</h1>
-        <p class="hero-description">Triển khai website tự động bằng <strong>GitHub Actions</strong> và <strong>GitHub Pages</strong>. Mọi thay đổi được kiểm tra trước khi xuất bản.</p>
-        <div class="hero-actions">
-          <span class="version-pill">PHIÊN BẢN <b id="version">2.0</b></span>
-          <a class="button" href="#workflow">Xem quy trình <span aria-hidden="true">→</span></a>
+    <div class="meta-strip page-gutter" aria-label="Thông tin dự án">
+      <span>01 / BÀI TẬP CÁ NHÂN</span>
+      <span><span class="signal-dot" aria-hidden="true"></span> ĐANG HOẠT ĐỘNG TRÊN GITHUB PAGES</span>
+      <span>2026 — V<span id="version">2.0</span></span>
+    </div>
+
+    <main id="content">
+      <section class="hero page-gutter" id="gioi-thieu" aria-labelledby="student-name">
+        <div class="hero-intro">
+          <p class="eyebrow"><span class="overline-slash">/</span> THIẾT KẾ PHẦN MỀM <span class="eyebrow-separator">—</span> DEVOPS STUDY</p>
+          <h1 id="student-name"><span class="hero-line">Lê Nhật</span><span class="hero-line hero-last">Hòa<span class="hero-stop">.</span></span><span class="student-id">— MSSV 1822040424</span></h1>
+          <div class="hero-narrative">
+            <div class="hero-rule"></div>
+            <p class="headline">Viết code là bước đầu.<br><em>Đưa nó lên mạng mới là chuyện chính.</em></p>
+            <p class="hero-copy">Một website nhỏ để thực hành quy trình CI/CD: kiểm tra mã nguồn tự động, ngăn lỗi trước khi xuất bản và triển khai qua GitHub Pages.</p>
+            <a class="text-action" href="#quy-trinh">KHÁM PHÁ QUY TRÌNH <span aria-hidden="true">↘</span></a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Minh họa trạng thái triển khai GitHub Actions">
+          <div class="visual-upper"><span>DEPLOYMENT BOARD</span><span>MAIN / 02.0</span></div>
+          <div class="visual-body">
+            <div class="visual-index">GH / 01—03</div>
+            <p class="visual-label">TỪ COMMIT ĐẾN WEBSITE</p>
+            <div class="visual-display">BUILD<span class="visual-display-line">&amp; SHIP<span class="visual-asterisk">*</span></span></div>
+            <div class="visual-divider"></div>
+            <div class="visual-logs" aria-label="Các bước thực hiện">
+              <div><span>01 &nbsp; source / main</span><span>RECEIVED <b>↗</b></span></div>
+              <div><span>02 &nbsp; automated checks</span><span>PASS <b>✓</b></span></div>
+              <div><span>03 &nbsp; pages deployment</span><span>LIVE <b>↗</b></span></div>
+            </div>
+          </div>
+          <div class="visual-lower"><span><i class="visual-led" aria-hidden="true"></i> RUN #4 · THÀNH CÔNG</span><a href="https://github.com/hoabaro1234-beep/devops-1822040424/actions/runs/41271677729" target="_blank" rel="noopener noreferrer" aria-label="Xem lần chạy GitHub Actions thành công">XEM RUN <span aria-hidden="true">↗</span></a></div>
+          <span class="visual-corner" aria-hidden="true">02</span>
         </div>
       </section>
 
-      <section class="overview" aria-label="Thông tin bài tập">
-        <article class="small-card"><p>01</p><strong>GitHub</strong><span>Quản lý mã nguồn</span></article>
-        <article class="small-card"><p>02</p><strong>Actions</strong><span>Kiểm thử tự động</span></article>
-        <article class="small-card"><p>03</p><strong>Pages</strong><span>Triển khai website</span></article>
-      </section>
+      <div class="ticker" aria-label="Chu trình Code, Check, Deploy"><div class="ticker-inner"><span>CODE</span><b>↗</b><span>CHECK</span><b>↗</b><span>DEPLOY</span><b>↗</b><span>REPEAT</span></div></div>
 
-      <section class="workflow-section" id="workflow">
-        <div class="section-heading">
-          <div><span class="section-kicker">QUY TRÌNH</span><h2>Code → Check → Deploy</h2></div>
-          <span class="verified-label">TỰ ĐỘNG HÓA</span>
-        </div>
-        <div class="steps">
-          <div class="step"><div class="step-num">1</div><div><h3>Viết code &amp; Push</h3><p>Cập nhật HTML, CSS, JavaScript rồi đẩy lên nhánh <code>main</code>.</p></div></div>
-          <div class="step"><div class="step-num">2</div><div><h3>Kiểm tra (check)</h3><p>Xác nhận đủ 3 tệp và tệp <code>index.html</code> chứa thẻ <code>&lt;title&gt;</code>.</p></div></div>
-          <div class="step"><div class="step-num">3</div><div><h3>Triển khai (deploy)</h3><p>Chỉ xuất bản lên GitHub Pages sau khi job <code>check</code> thành công.</p></div></div>
+      <section class="pipeline page-gutter section-space" id="quy-trinh" aria-labelledby="pipeline-title">
+        <div class="section-aside"><span class="section-number">[ 01 / 02 ]</span><p>THE PROCESS<br><span>Quy trình triển khai</span></p></div>
+        <div class="section-main">
+          <div class="section-heading"><h2 id="pipeline-title">Một lần push.<br><em>Hai job.</em></h2><p>GitHub Actions tự động kiểm tra website trước. Chỉ khi mọi điều kiện đạt yêu cầu, lệnh deploy mới được phép chạy.</p></div>
+          <div class="process-list">
+            <article class="process-item"><span class="process-no">01</span><div class="process-body"><h3>Code &amp; Commit</h3><p>Viết giao diện bằng HTML, CSS, JavaScript; đẩy thay đổi lên nhánh <code>main</code>.</p></div><span class="process-arrow" aria-hidden="true">↗</span></article>
+            <article class="process-item"><span class="process-no">02</span><div class="process-body"><h3>Quality Check</h3><p>Kiểm tra đủ <code>index.html</code>, <code>style.css</code>, <code>script.js</code> và thẻ <code>&lt;title&gt;</code>.</p></div><span class="process-arrow" aria-hidden="true">↗</span></article>
+            <article class="process-item"><span class="process-no">03</span><div class="process-body"><h3>Continuous Deploy</h3><p>Job <code>deploy</code> chỉ chạy sau <code>check</code> thành công, rồi xuất bản lên GitHub Pages.</p></div><span class="process-arrow" aria-hidden="true">↗</span></article>
+          </div>
         </div>
       </section>
 
-      <section class="notice" aria-label="Cập nhật phiên bản">
-        <div class="notice-icon">✓</div>
-        <div><strong>Website đã cập nhật nội dung phiên bản 2.0</strong><p>Thay đổi nội dung để chứng minh quy trình triển khai phiên bản mới. Trạng thái triển khai thực tế xem tại GitHub Actions.</p></div>
+      <section class="experiment section-space" id="kiem-thu" aria-labelledby="experiment-title">
+        <div class="experiment-heading page-gutter"><div><span class="section-number">[ 02 / 02 ] &nbsp; THE EXPERIMENT</span><h2 id="experiment-title">Thử cho sai.<br><em>Để biết nó đúng.</em></h2></div><p>Hai lần chạy thực tế trên GitHub. Chuyển trạng thái bên dưới để xem điều gì xảy ra khi mã nguồn có lỗi và sau khi sửa.</p></div>
+        <div class="experiment-layout page-gutter">
+          <div class="run-switch" role="tablist" aria-label="Chọn kết quả kiểm thử">
+            <button type="button" id="tab-success" class="run-tab is-active" role="tab" aria-controls="run-panel" aria-selected="true" data-run="success"><span class="tab-index">/ 01</span><span class="tab-title">Bản sửa thành công</span><span class="tab-meta"><i class="status-icon success-icon"></i> RUN #4 — SUCCESS</span><span class="tab-arrow" aria-hidden="true">↗</span></button>
+            <button type="button" id="tab-failure" class="run-tab" role="tab" aria-controls="run-panel" aria-selected="false" data-run="failure" tabindex="-1"><span class="tab-index">/ 02</span><span class="tab-title">Cố tình xóa &lt;title&gt;</span><span class="tab-meta"><i class="status-icon fail-icon"></i> RUN #2 — FAILED</span><span class="tab-arrow" aria-hidden="true">↗</span></button>
+            <p class="experiment-note">Tất cả kết quả được ghi nhận từ repository GitHub công khai, không phải dữ liệu mô phỏng của hệ thống CI.</p>
+          </div>
+          <div class="console" role="tabpanel" id="run-panel" aria-labelledby="tab-success" tabindex="0">
+            <div class="console-top"><span><i></i><i></i><i></i></span><span>GITHUB ACTIONS / EXECUTION LOG</span><span id="console-id">#04</span></div>
+            <div class="console-content">
+              <p class="console-muted">$ ./deploy.sh --branch main</p>
+              <p class="console-line"><span>01</span><span>check website files</span><strong id="check-status" class="ok">✓ PASSED</strong></p>
+              <p class="console-line"><span>02</span><span>deploy to github pages</span><strong id="deploy-status" class="ok">✓ PASSED</strong></p>
+              <div class="console-result"><span id="console-badge" class="result-badge">SUCCESS</span><p id="console-message">Mã nguồn hợp lệ. Website phiên bản 2.0 được triển khai thành công.</p></div>
+              <a id="run-link" href="https://github.com/hoabaro1234-beep/devops-1822040424/actions/runs/41271677729" target="_blank" rel="noopener noreferrer">XEM KẾT QUẢ TRÊN GITHUB <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </div>
       </section>
+
+      <section class="closing page-gutter" aria-labelledby="closing-title"><div><span class="closing-label">VERSION 2.0 — DEPLOYED</span><h2 id="closing-title">Không chỉ chạy<br>trên <em>máy của mình.</em></h2></div><div class="closing-actions"><a class="primary-cta" href="https://hoabaro1234-beep.github.io/devops-1822040424/" target="_blank" rel="noopener noreferrer">MỞ WEBSITE <span aria-hidden="true">↗</span></a><a class="secondary-cta" href="https://github.com/hoabaro1234-beep/devops-1822040424" target="_blank" rel="noopener noreferrer">SOURCE CODE <span aria-hidden="true">↗</span></a></div></section>
     </main>
-
-    <footer><span>© <span id="year">2026</span> Lê Nhật Hòa · MSSV 1822040424</span><span>HTML · CSS · JAVASCRIPT</span></footer>
+    <footer class="site-footer page-gutter"><div>© <span id="year">2026</span> LÊ NHẬT HÒA <span> / 1822040424</span></div><div>DESIGNED TO BUILD. BUILT TO SHIP.</div><a href="#top">BACK TO TOP ↑</a></footer>
   </div>
 </body>
 </html>
