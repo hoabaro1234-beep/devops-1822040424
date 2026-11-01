@@ -1,5 +1,5 @@
 // Phần JavaScript đơn giản để minh hoạ tương tác frontend.
-const VERSION = '1.0';
+const VERSION = '2.0';
 const versionElement = document.getElementById('version');
 const yearElement = document.getElementById('year');
 
