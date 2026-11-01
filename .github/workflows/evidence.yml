@@ -37,6 +37,37 @@ jobs:
           capture 07_experiment_typography 'https://hoabaro1234-beep.github.io/devops-1822040424/#kiem-thu'
           capture 08_case_typography 'https://hoabaro1234-beep.github.io/devops-1822040424/#case-title'
           ls -lh evidence/
+      - name: Capture typography sections after browser scroll
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --prefix /tmp/evidence-deps --no-save --silent puppeteer-core@24
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          NODE_PATH=/tmp/evidence-deps/node_modules node <<'NODE'
+          const puppeteer = require('puppeteer-core');
+          (async () => {
+            const browser = await puppeteer.launch({
+              executablePath: process.env.CHROME_BIN,
+              headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage']
+            });
+            const page = await browser.newPage();
+            await page.setViewport({width:1440, height:900, deviceScaleFactor:1});
+            await page.goto('https://hoabaro1234-beep.github.io/devops-1822040424/', {waitUntil:'networkidle2'});
+            await page.evaluate(() => document.fonts.ready);
+            const specs = [
+              ['#experiment-title', 'evidence/07_experiment_typography.png'],
+              ['#case-title', 'evidence/08_case_typography.png']
+            ];
+            for (const [selector, dest] of specs) {
+              await page.$eval(selector, el => el.scrollIntoView({block:'center', behavior:'instant'}));
+              await new Promise(resolve => setTimeout(resolve, 750));
+              await page.screenshot({path:dest});
+              console.log('Captured', selector, dest);
+            }
+            console.log('Italic font:', await page.$eval('#experiment-title em', el => getComputedStyle(el).fontFamily));
+            await browser.close();
+          })().catch(error => { console.error(error); process.exit(1); });
+          NODE
       - name: Upload evidence images
         uses: actions/upload-artifact@v4
         with:
