@@ -41,3 +41,5 @@ jobs:
           name: ci-cd-report-screenshots
           path: evidence/*.png
           retention-days: 7
+
+# Refresh evidence screenshots after UI redesign on 2026-11-01.
