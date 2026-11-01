@@ -34,6 +34,8 @@ jobs:
           capture 04_run_failed https://github.com/hoabaro1234-beep/devops-1822040424/actions/runs/41271605915
           capture 05_run_success https://github.com/hoabaro1234-beep/devops-1822040424/actions/runs/41271677729
           capture 06_live_website https://hoabaro1234-beep.github.io/devops-1822040424/
+          capture 07_experiment_typography 'https://hoabaro1234-beep.github.io/devops-1822040424/#kiem-thu'
+          capture 08_case_typography 'https://hoabaro1234-beep.github.io/devops-1822040424/#case-title'
           ls -lh evidence/
       - name: Upload evidence images
         uses: actions/upload-artifact@v4
