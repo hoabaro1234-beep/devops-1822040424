@@ -9,10 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css?v=21">
+  <script src="script.js?v=21" defer></script>
 </head>
 <body id="top">
+  <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#content">Đi đến nội dung</a>
   <div class="site-frame">
     <header class="site-header page-gutter">
@@ -32,7 +33,7 @@
     <div class="meta-strip page-gutter" aria-label="Thông tin dự án">
       <span>01 / BÀI TẬP CÁ NHÂN</span>
       <span><span class="signal-dot" aria-hidden="true"></span> ĐANG HOẠT ĐỘNG TRÊN GITHUB PAGES</span>
-      <span>2026 — V<span id="version">2.0</span></span>
+      <span>2026 — V<span id="version">2.1</span></span>
     </div>
 
     <main id="content">
@@ -48,7 +49,7 @@
           </div>
         </div>
         <div class="hero-visual" aria-label="Minh họa trạng thái triển khai GitHub Actions">
-          <div class="visual-upper"><span>DEPLOYMENT BOARD</span><span>MAIN / 02.0</span></div>
+          <div class="visual-upper"><span>DEPLOYMENT BOARD</span><span>MAIN / 02.1</span></div>
           <div class="visual-body">
             <div class="visual-index">GH / 01—03</div>
             <p class="visual-label">TỪ COMMIT ĐẾN WEBSITE</p>
@@ -60,7 +61,7 @@
               <div><span>03 &nbsp; pages deployment</span><span>LIVE <b>↗</b></span></div>
             </div>
           </div>
-          <div class="visual-lower"><span><i class="visual-led" aria-hidden="true"></i> RUN #4 · THÀNH CÔNG</span><a href="https://github.com/hoabaro1234-beep/devops-1822040424/actions/runs/41271677729" target="_blank" rel="noopener noreferrer" aria-label="Xem lần chạy GitHub Actions thành công">XEM RUN <span aria-hidden="true">↗</span></a></div>
+          <div class="visual-lower"><span><i class="visual-led" aria-hidden="true"></i> CI/CD · HOẠT ĐỘNG</span><a href="https://github.com/hoabaro1234-beep/devops-1822040424/actions/runs/41271677729" target="_blank" rel="noopener noreferrer" aria-label="Xem lần chạy GitHub Actions thành công">XEM RUN <span aria-hidden="true">↗</span></a></div>
           <span class="visual-corner" aria-hidden="true">02</span>
         </div>
       </section>
@@ -70,11 +71,26 @@
       <section class="pipeline page-gutter section-space" id="quy-trinh" aria-labelledby="pipeline-title">
         <div class="section-aside"><span class="section-number">[ 01 / 02 ]</span><p>THE PROCESS<br><span>Quy trình triển khai</span></p></div>
         <div class="section-main">
-          <div class="section-heading"><h2 id="pipeline-title">Một lần push.<br><em>Hai job.</em></h2><p>GitHub Actions tự động kiểm tra website trước. Chỉ khi mọi điều kiện đạt yêu cầu, lệnh deploy mới được phép chạy.</p></div>
-          <div class="process-list">
-            <article class="process-item"><span class="process-no">01</span><div class="process-body"><h3>Code &amp; Commit</h3><p>Viết giao diện bằng HTML, CSS, JavaScript; đẩy thay đổi lên nhánh <code>main</code>.</p></div><span class="process-arrow" aria-hidden="true">↗</span></article>
-            <article class="process-item"><span class="process-no">02</span><div class="process-body"><h3>Quality Check</h3><p>Kiểm tra đủ <code>index.html</code>, <code>style.css</code>, <code>script.js</code> và thẻ <code>&lt;title&gt;</code>.</p></div><span class="process-arrow" aria-hidden="true">↗</span></article>
-            <article class="process-item"><span class="process-no">03</span><div class="process-body"><h3>Continuous Deploy</h3><p>Job <code>deploy</code> chỉ chạy sau <code>check</code> thành công, rồi xuất bản lên GitHub Pages.</p></div><span class="process-arrow" aria-hidden="true">↗</span></article>
+          <div class="section-heading"><h2 id="pipeline-title">Một lần push.<br><em>Hai job.</em></h2><p>Một bản commit đi qua hai cổng: kiểm tra đầu vào và xuất bản. Chọn từng bước để xem lệnh thực thi cùng vai trò của nó.</p></div>
+          <div class="pipeline-explorer" aria-label="Trình khám phá quy trình CI/CD">
+            <div class="pipeline-track" role="tablist" aria-label="Các bước trong pipeline">
+              <button id="stage-push" class="stage-tab is-current" role="tab" data-stage="push" aria-controls="stage-panel" aria-selected="true" type="button">
+                <span class="stage-meta">STEP 01 / INPUT</span><span class="stage-name">Push <span aria-hidden="true">↗</span></span><span class="stage-sub">Đưa mã nguồn lên main</span>
+              </button>
+              <button id="stage-check" class="stage-tab" role="tab" data-stage="check" aria-controls="stage-panel" aria-selected="false" tabindex="-1" type="button">
+                <span class="stage-meta">STEP 02 / GATE</span><span class="stage-name">Check <span aria-hidden="true">↗</span></span><span class="stage-sub">Chặn mã nguồn chưa đạt</span>
+              </button>
+              <button id="stage-deploy" class="stage-tab" role="tab" data-stage="deploy" aria-controls="stage-panel" aria-selected="false" tabindex="-1" type="button">
+                <span class="stage-meta">STEP 03 / OUTPUT</span><span class="stage-name">Deploy <span aria-hidden="true">↗</span></span><span class="stage-sub">Phát hành trên GitHub Pages</span>
+              </button>
+            </div>
+            <div class="stage-detail" id="stage-panel" role="tabpanel" tabindex="0" aria-labelledby="stage-push">
+              <div class="stage-info"><p class="stage-tag" id="stage-tag">01 — VERSION CONTROL</p><h3 id="stage-title">Đẩy thay đổi lên nhánh main.</h3><p id="stage-description">Bản cập nhật được lưu vào repository. GitHub Actions tự khởi chạy workflow mỗi khi có commit mới trên nhánh main.</p><a id="stage-link" href="https://github.com/hoabaro1234-beep/devops-1822040424/commits/main" target="_blank" rel="noopener noreferrer">XEM LỊCH SỬ COMMIT <span aria-hidden="true">↗</span></a></div>
+              <div class="stage-code-block" aria-label="Lệnh minh họa"><div class="stage-code-head"><span>TERMINAL / MAIN</span><span class="stage-code-dot" aria-hidden="true"></span></div><pre><code id="stage-code">git add .
+git commit -m "Update website"
+git push origin main</code></pre></div>
+            </div>
+            <div class="pipeline-footnote"><span>01 PUSH <b>→</b> 02 CHECK <b>→</b> 03 DEPLOY</span><span>DEPLOY CÓ <code>needs: check</code></span></div>
           </div>
         </div>
       </section>
@@ -93,14 +109,18 @@
               <p class="console-muted">$ ./deploy.sh --branch main</p>
               <p class="console-line"><span>01</span><span>check website files</span><strong id="check-status" class="ok">✓ PASSED</strong></p>
               <p class="console-line"><span>02</span><span>deploy to github pages</span><strong id="deploy-status" class="ok">✓ PASSED</strong></p>
-              <div class="console-result"><span id="console-badge" class="result-badge">SUCCESS</span><p id="console-message">Mã nguồn hợp lệ. Website phiên bản 2.0 được triển khai thành công.</p></div>
+              <div class="console-result"><span id="console-badge" class="result-badge">SUCCESS</span><p id="console-message">Mã nguồn hợp lệ. Workflow xác nhận bản sửa phiên bản 2.0 triển khai thành công.</p></div>
               <a id="run-link" href="https://github.com/hoabaro1234-beep/devops-1822040424/actions/runs/41271677729" target="_blank" rel="noopener noreferrer">XEM KẾT QUẢ TRÊN GITHUB <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="closing page-gutter" aria-labelledby="closing-title"><div><span class="closing-label">VERSION 2.0 — DEPLOYED</span><h2 id="closing-title">Không chỉ chạy<br>trên <em>máy của mình.</em></h2></div><div class="closing-actions"><a class="primary-cta" href="https://hoabaro1234-beep.github.io/devops-1822040424/" target="_blank" rel="noopener noreferrer">MỞ WEBSITE <span aria-hidden="true">↗</span></a><a class="secondary-cta" href="https://github.com/hoabaro1234-beep/devops-1822040424" target="_blank" rel="noopener noreferrer">SOURCE CODE <span aria-hidden="true">↗</span></a></div></section>
+      <section class="case-note page-gutter" aria-labelledby="case-title">
+        <div class="case-head"><span class="section-number">[ 03 / 03 ] &nbsp; THE RESULT</span><span class="case-issue">MỘT THAY ĐỔI NHỎ, MỘT BÀI HỌC RÕ RÀNG.</span></div>
+        <div class="case-content"><h2 id="case-title">Không deploy<br><em>bằng may mắn.</em></h2><div class="case-details"><p><strong>Vấn đề.</strong> Khi thẻ <code>&lt;title&gt;</code> bị xóa, trang web vẫn có thể tải được, nhưng không đạt yêu cầu của bài thực hành.</p><p><strong>Cách xử lý.</strong> Job <code>check</code> kiểm tra các tệp bắt buộc và thẻ tiêu đề. Nếu kiểm tra không đạt, <code>deploy</code> bị bỏ qua.</p><p><strong>Kết quả.</strong> Sau khi khôi phục thẻ tiêu đề, hai job hoàn tất và GitHub Pages nhận phiên bản mới.</p></div></div>
+      </section>
+      <section class="closing page-gutter" aria-labelledby="closing-title"><div><span class="closing-label">VERSION 2.1 — DEPLOYED</span><h2 id="closing-title">Không chỉ chạy<br>trên <em>máy của mình.</em></h2></div><div class="closing-actions"><a class="primary-cta" href="https://hoabaro1234-beep.github.io/devops-1822040424/" target="_blank" rel="noopener noreferrer">MỞ WEBSITE <span aria-hidden="true">↗</span></a><a class="secondary-cta" href="https://github.com/hoabaro1234-beep/devops-1822040424" target="_blank" rel="noopener noreferrer">SOURCE CODE <span aria-hidden="true">↗</span></a></div></section>
     </main>
     <footer class="site-footer page-gutter"><div>© <span id="year">2026</span> LÊ NHẬT HÒA <span> / 1822040424</span></div><div>DESIGNED TO BUILD. BUILT TO SHIP.</div><a href="#top">BACK TO TOP ↑</a></footer>
   </div>
